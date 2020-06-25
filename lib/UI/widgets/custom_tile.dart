@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CustomTile extends StatelessWidget {
 
   final int height;
+  final bool active;
 
-  CustomTile({this.height});
+  CustomTile({this.height, this.active = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CustomTile extends StatelessWidget {
           child: Container(
         width: 15.0,
         height: _height - height,
-        color: Colors.red,
+        color: active ? Colors.yellow : Colors.red,
       ),
     );
   }
