@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:imaginesorting/Bloc/bubble_sorting.dart';
 import 'package:imaginesorting/UI/tiles.dart';
+import 'package:imaginesorting/const.dart';
+import 'package:imaginesorting/Bloc/insertion_sorting.dart';
 
-class SelectSorting extends StatelessWidget {
+class SelectSorting extends StatefulWidget {
+  @override
+  _SelectSortingState createState() => _SelectSortingState();
+}
+
+class _SelectSortingState extends State<SelectSorting> {
+  String sorting = "";
+
+  List<Widget> list = [
+    Tiles(
+      load: bubbleSort.sortTheArray(listNumber),
+      data: bubbleSort.bubble,
+    ),
+    Tiles(
+      load: insertionSort.sortTheArray(listNumber),
+      data: insertionSort.insertion,
+    ),
+  ];
+
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +61,20 @@ class SelectSorting extends StatelessWidget {
                               child: new Text(value),
                             );
                           }).toList(),
-                          onChanged: (_) {},
+                          onChanged: (text) {
+                            setState(() {
+                              sorting = text;
+                            });
+                          },
                         ),
                       ),
                       RaisedButton(
-                        color: Colors.purple,
+                        color: Colors.greenAccent,
                         onPressed: () {},
                         child: Text(
                           "Sort",
-                          style: TextStyle(color: Colors.white),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         ),
                       ),
                     ],

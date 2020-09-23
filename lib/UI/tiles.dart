@@ -4,37 +4,20 @@ import 'package:imaginesorting/Bloc/insertion_sorting.dart';
 import 'package:imaginesorting/UI/widgets/custom_tile.dart';
 
 class Tiles extends StatefulWidget {
+  final Function load;
+  final Stream data;
+  final List<int> list;
+
+  Tiles({this.load, this.data, this.list});
+
   @override
   _TilesState createState() => _TilesState();
 }
 
 class _TilesState extends State<Tiles> {
-  final List<int> list = [
-    150,
-    350,
-    450,
-    210,
-    230,
-    420,
-    620,
-    460,
-    820,
-    750,
-    670,
-    480,
-    590,
-    350,
-    410,
-    270,
-    380,
-    190,
-    740,
-    650
-  ];
-
   @override
   void initState() {
-    insertionSort.sortTheArray(list);
+    widget.load();
     super.initState();
   }
 
@@ -43,7 +26,7 @@ class _TilesState extends State<Tiles> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: StreamBuilder<List<int>>(
-          stream: insertionSort.insertion,
+          stream: widget.data,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               print(snapshot.data);

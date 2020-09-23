@@ -15,7 +15,7 @@ class CustomTile extends StatelessWidget {
       child: Container(
         width: 15.0,
         height: _height - height,
-        color: active ? Colors.yellow : Colors.amberAccent,
+        color: active ? Colors.yellow : Colors.greenAccent,
       ),
     );
   }
